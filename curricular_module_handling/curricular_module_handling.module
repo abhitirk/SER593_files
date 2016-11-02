@@ -1,0 +1,140 @@
+<?php
+/**
+* @file
+* Module file for Curricular Module Handling */
+/**
+* Implements of hook_init(). */
+function curricular_module_handling_init() {
+	//drupal_set_message('Curricular modules are alive!');
+}
+
+/**
+* Implements hook_menu()
+*/
+function curricular_module_handling_menu(){
+	
+	$items = array();
+	  $items['admin/curricular_module_versioning'] = array(
+	      'title' => 'Curricular Module Versioning',
+	      'description' => 'My Description',
+	      'position' => 'left',
+	      'weight' => -100,
+	      'page callback' => 'system_admin_menu_block_page',
+	      'access arguments' => array('administer site configuration'),
+	      'file' => 'system.admin.inc',
+	      'file path' => drupal_get_path('module', 'system'),
+	  );
+	  //We need at least one child item, otherwise parent will not show up
+	  
+	  //Pending modules - need to be verified
+	  
+	  $items['admin/curricular_module_versioning/pending_modules'] = array(
+	      'title' => 'Pending Modules',
+	      'description' => 'View pending modules to be updated on site',
+	      'page callback' => 'pending_modules_renderable_page',
+	      'page arguments' => array('my-path'),
+	      'access arguments' => array('administer site configuration'),
+	  );
+	  
+	  $items['admin/curricular_module_versioning/commits_and_branches'] = array(
+	      'title' => 'Commits and Branches',
+	      'description' => 'View and compare commits and branches',
+	      'page callback' => 'commits_branches_renderable_page',
+	      'page arguments' => array('my-path'),
+	      'access arguments' => array('administer site configuration'),
+	  );
+	  
+	  $items['admin/curricular_module_versioning/make_changes'] = array(
+	      'title' => 'Make Changes',
+	      'description' => 'Make changes to files on GitHub',
+	      'page callback' => 'make_changes_renderable_page',
+	      'page arguments' => array('my-path'),
+	      'access arguments' => array('administer site configuration'),
+	  );
+	  
+	  
+	
+	$items['curricular_module_handling/custom'] = array(
+	    'title' => 'Custom page',
+	    'page callback' => 'curricular_module_handling_custom',
+	    'access arguments' => array('access content'),
+	  );
+ 
+	return $items;
+}
+
+/**
+* Implements hook_theme()
+*/
+function curricular_module_handling_theme($existing, $type, $theme, $path) {
+  return array(
+    'curricular_module_handling_function' => array(
+      'variables' => array('forums' => NULL, 'topics' => NULL),
+    ),
+    'verify_module_template' => array(
+      'variables' => array('text_one' => NULL),
+	  'template' => 'verify_module_template',
+    ),
+    'pending_modules_template' => array(
+      'variables' => array('text_one' => NULL),
+	  'template' => 'pending_modules_template',
+    ),
+    'make_changes_template' => array(
+      'variables' => array('text_one' => NULL),
+	  'template' => 'make_changes_template',
+    ),
+    'commits_branches_template' => array(
+      'variables' => array('text_one' => NULL),
+	  'template' => 'commits_branches_template',
+    ),
+  );
+}
+/**
+* Custom callback function - verify module template
+*/
+function verify_module_renderable_page(){
+	$text_one = 'Yeahyeahyeah';
+	$output = array(
+		'#theme' => 'verify_module_template',
+		'#type' => 'markup',
+		'#text_one' => $text_one,
+	);
+	return $output;
+}
+
+function pending_modules_renderable_page(){
+	$text_one = 'Yeahyeahyeah';
+	$output = array(
+		'#theme' => 'pending_modules_template',
+		'#type' => 'markup',
+		'#text_one' => $text_one,
+	);
+	return $output;
+}
+
+function commits_branches_renderable_page(){
+	$text_one = 'Yeahyeahyeah';
+	$output = array(
+		'#theme' => 'commits_branches_template',
+		'#type' => 'markup',
+		'#text_one' => $text_one,
+	);
+	return $output;
+}
+
+function make_changes_renderable_page(){
+	$text_one = 'Yeahyeahyeah';
+	$output = array(
+		'#theme' => 'make_changes_template',
+		'#type' => 'markup',
+		'#text_one' => $text_one,
+	);
+	return $output;
+}
+/**
+* Implement drupal_set_message().
+*/
+function curricular_module_handling_set_message($msg){
+	drupal_set_message($msg);
+	return;
+}

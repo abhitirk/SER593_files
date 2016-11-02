@@ -1,0 +1,13 @@
+<?php
+/**
+* @file
+* Module file for Guestbook Email Verify
+*/
+function guestbook_email_verify_edit_validate($form, &$form_state) {
+  if (!user_access('bypass email verification') && $form_state['values']['op'] != t('Cancel account')) {
+    // Validate the e-mail address.
+    if ($error = email_verify_check($form_state['input']['edit_anonemail'])) {
+      form_set_error('edit_anonemail', $error);
+    }
+  }
+}
