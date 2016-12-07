@@ -40,13 +40,9 @@ else if(isset($_POST['opt'])){
 	else if($opt == 'view'){
 		require_once 'view_file.php';
 	}
-	else{
+	else
 		require_once 'delete_file.php';
-		$msg = 'Successfully deleted the file named '.$file;
-		echo '<div class="messages status">'.$msg.'</div>';
-		$repo = $rep;
-		require_once 'get_repo_files.php';
-	}
+	
 }
 else if(isset($_POST['repo'])){
 	$repo = $_POST['repo'];

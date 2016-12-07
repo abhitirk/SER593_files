@@ -62,7 +62,15 @@ function curricular_module_handling_menu(){
  
 	return $items;
 }
-
+function curricular_module_handling_menu_breadcrumb_alter(&$active_trail, $item) {
+     
+    if (!drupal_is_front_page()) {
+       $end = end($active_trail);
+       if ($item ['href'] == $end ['href']) {
+         $active_trail [] = $end;
+       }
+     }
+}
 /**
 * Implements hook_theme()
 */

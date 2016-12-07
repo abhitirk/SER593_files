@@ -1,18 +1,72 @@
+<style>
+.verify-buttons {
+	border: 1px solid #ccc;
+	    margin-bottom: .5em;
+	    margin-right: 1em;
+	    font: bold 12px/32px 'Open Sans', 'Lucida Sans', 'Lucida Grande', verdana sans-serif;
+	    text-decoration: none;
+	    height: 33px;
+	    color: #666;
+	    cursor: pointer;
+	    outline: none;
+	    -moz-border-radius: 3px;
+	    -khtml-border-radius: 3px;
+	    -webkit-border-radius: 3px;
+	    border-radius: 3px;
+	    background: #FAFAFA;
+	    background-image: linear-gradient(bottom, #E9EAEC 0%, #FAFAFA 100%);
+	    background-image: -o-linear-gradient(bottom, #E9EAEC 0%, #FAFAFA 100%);
+	    background-image: -moz-linear-gradient(bottom, #E9EAEC 0%, #FAFAFA 100%);
+	    background-image: -webkit-linear-gradient(bottom, #E9EAEC 0%, #FAFAFA 100%);
+	    background-image: -ms-linear-gradient(bottom, #E9EAEC 0%, #FAFAFA 100%);
+	    background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #E9EAEC), color-stop(1, #FAFAFA) );
+	    -webkit-box-shadow: 0 3px 3px 0 #d2d2d2;
+	    -moz-box-shadow: 0 3px 3px 0 #d2d2d2;
+	    box-shadow: 0 3px 3px 0 #d2d2d2;
+	    padding: 0 13px 1px;
+}
+</style>
 <?php
 
 // Template file to display the details of the specific pending module.
 
 $module_directory = drupal_get_path('module', 'curricular_module_handling');
 include $module_directory."/parsedown/Parsedown.php";
-include $module_directory."/parsedown-extra/ParsedownExtra.php";?>
-<h2>Verify Update?</h2>
-	<form action="" method="post">
+include $module_directory."/parsedown-extra/ParsedownExtra.php";
+//include $module_directory."/includes/includes.php";?>
+<h3>Verify Update?</h3>
+	<form action="" method="post" id="verify_form">
 		<input type="hidden" value="<?php echo $module_no;?>" name="form_module_no">
-  		<button class="button" value="yes" name="yes" type="submit">Yes</button>
+		<input type="hidden" value="" id = "tag" name="tag">
+  		<button value="yes" id="yes" name="yes" type="submit" onclick="return set_tag();" class="verify-buttons">Yes</button>
   <!-- <button class="button" value="later" name="later" onclick="window.location.href='../curricular_module_versioning/'" >Not Now</button> -->
-  		<button class="button" value="later" name="later" type="submit">Not Now</button>
-  		<button class="button" value="disregard" name="disregard" type="submit">Disregard</button>
+  		<button value="later" name="later" type="submit" class="verify-buttons">Not Now</button>
+  		<button value="disregard" name="disregard" type="submit" class="verify-buttons" onclick="return discard_confirm();">Disregard</button>
 	</form>
+<br>
+<script type="text/javascript">
+	function set_tag(){
+		var tag = prompt("Please enter the tag", "");
+		if(tag != null){
+			document.getElementById("tag").value = tag;
+			return true;
+		}
+		return false;
+	}
+	
+	function discard_confirm(){
+		
+		var r = confirm("Are you sure you want to discard this update?");
+		return r;
+	}
+</script>
+<div>
+<?php
+include "get_last_unverified_commits.php";
+?>
+</div>
+<h2 align="center">Pending Curricular Module Content</h2>
+<div style='font-family: Arial, Helvetica, sans-serif;'>
 <?php
 $parsedown = new ParsedownExtra();
 		
@@ -114,29 +168,3 @@ $str = '';
 		
 
 ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script>
-/*$(document).ready(function(){
-    $('.button').click(function(){
-        var clickBtnValue = $(this).val();
-        //alert(clickBtnValue+" has been clicked...");
-        var ajaxurl = 'ajax_button_handler.php',
-        dt =  {'action': clickBtnValue};
-
-        $.ajax({
-      		url: ajaxurl,
-      		type: 'post',
-      		data: {'action': clickBtnValue},
-      		success: function(data) {
-       		 	// alert(data);
-     		 },
-      		error: function(xhr, desc, err) {
-       		 console.log(xhr);
-       		 console.log("Details: " + desc + "\nError:" + err);
-      		}
-    	}); // end ajax call
-    });
-
-});*/
-</script>

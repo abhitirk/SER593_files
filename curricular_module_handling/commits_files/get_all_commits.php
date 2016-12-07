@@ -1,8 +1,15 @@
 <?php
+$format2 = 'c';
+// $result2 = db_query("SELECT title, changed FROM '1' ORDER BY changed DESC");
+$node = node_load($repo);
+ $output2 = date($format2, $node->changed);
+ $since_datetime = substr($output2, 0, 19)."Z";
 
-$response = $api->get('repos/software-enterprise-asu/'.$repo.'/'.'commits/');
+$parameters = ['since' => $since_datetime,];
 
-	
+$response = $api->get('repos/software-enterprise-asu/'.$repo.'/'.'commits/', $parameters);
+
+
 	$my_commits = $api->decode($response);
 	//print $my_files;
 	//print_r($my_repos);
