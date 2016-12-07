@@ -10,9 +10,13 @@
 ### Important files in the module directory and their significance:
 
 **curricular_module_handling.module** - Main drupal module file which defines the menu, theme files and hooks
+
 **pending_modules_template.tpl.php** - Template file for "Pending Modules" section of the plugin, calls relevant files and routines
-**make_changes_template.tpl.php** - Template file for "Make Changes" section of the plugin, calls relevant files and routines under 
+
+**make_changes_template.tpl.php** - Template file for "Make Changes" section of the plugin, calls relevant files and routines 
+
 **commits_branches_template.tpl.php** - Template file for "Pending Modules" section of the plugin, calls relevant files and routines
+
 **auth.php** - Specifiy access token in this file for using GitHub API
 
 
