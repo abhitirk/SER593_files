@@ -1,5 +1,5 @@
 # **Installation Instructions** - Curricular Module Versioning
-1. Download/copy entire folder to ***/sites/all/modules/custom*** (or */sites/all/modules/custom* on the remote server) in the Drupal installation
+1. Download/copy entire folder to ***/sites/all/modules/custom*** (or */code/sites/all/modules/custom* on the remote server) in the Drupal installation
 2. In Drupal, perform the following steps:
 	a. Clear caches under *admin/config/development/performance*
 	b. Search for module under *admin/modules* with the name "Curricular Module Handling" and activate it
