@@ -17,7 +17,7 @@
 
 **commits_branches_template.tpl.php** - Template file for "Pending Modules" section of the plugin, calls relevant files and routines
 
-**auth.php** - Specifiy access token in this file for using GitHub API
+**auth.php** - Specifiy access token in this file for using GitHub API (as new access tokens may need to be generated if duplication is detected)
 
 
 
