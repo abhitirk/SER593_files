@@ -12,6 +12,11 @@
 	
 	e) The module link should be visible in the main menu.
 	
+### Dependencies:
+
+PHP 7.0
+Drupal 7
+	
 ### Important files in the module directory and their significance:
 
 **curricular_module_handling.module** - Main drupal module file which defines the menu, theme files and hooks
