@@ -14,8 +14,7 @@
 	
 ### Dependencies:
 
-PHP 7.0
-Drupal 7
+PHP 7, Drupal 7
 	
 ### Important files in the module directory and their significance:
 
